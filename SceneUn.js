@@ -1,24 +1,127 @@
+var narrato_ext1;
+var narrato_ext1_2;
+var narrato_ext1_3;
+var narrato_ext1_4;
+
+var narrato_grotte1;
+
+var narrato_ext2;
+var narrato_ext2_2;
+
 var player;
 var power_up;
+var power_up_vie;
+
+var restart = false;
+
+var positionplayerX = 6000;
+var positionplayerY = 70;
+
+var position2playerX = 70;  //70
+var position2playerY = 560;  // 560
+
+var position3playerX = 70;  //70
+var position3playerY = 680;  //680
+
+var position4playerX = 1151;  //20
+var position4playerY = 200;  //430
 
 var background;
-var fond_ext1;
+var decor_ext1;
 var platforms_ext1;
 var piege_ext1;
 var changescene_ext1;
-
-var positionXtext;
-var positionYtext;
+var bloque_zetsu_ext1;
 
 var fond_grotte1;
 var platforms_grotte1;
 var piege_grotte1;
-var bloque_zetsu_ext1;
+var changescene_grotte1;
+
+var decor_ext2;
+var platforms_ext2;
+var piege_ext2;
+var changescene_ext2;
+var bloque_zetsu_ext2;
+
+var sol_grotte2;
+var platforms_grotte2;
+var piege_grotte2;
+
+var positionXtext;
+var positionYtext;
 
 var ennemi_zetsu;
 var ennemi_araignee;
 var ennemi_chenille;
 var ennemi_fusee;
+
+var boss;
+
+var projectile;
+var projectile2;
+var projectile2_1;
+var projectile2_2;
+var projectile3;
+var projectile3_1;
+
+var tir = 1;
+var tir2 = 1;
+var tir2_1 = 1;
+var tir2_2 = 1;
+var tir3 = 1;
+var tir3_1 = 1;
+
+var projectilE;
+var projectilE_1;
+var projectilE_2;
+var projectilE_3;
+var projectilE_4;
+var projectilE_5;
+var projectilE_6;
+var projectilE2;
+var projectilE2_1;
+var projectilE2_2;
+var projectilE2_3;
+var projectilE3;
+var projectilE3_1;
+
+var projectele;
+var projectele_1;
+var projectele2;
+var projectele2_1;
+var projectele2_2;
+
+var sharingan;
+var boules_blyke;
+
+var tirs = 1;
+var tirs_1 = 1;
+var tirs_2 = 1;
+var tirs_3 = 1;
+var tirs_4 = 1;
+var tirs_5 = 1;
+var tirs_6 = 1;
+var tirs2 = 1;
+var tirs2_1 = 1;
+var tirs2_2 = 1;
+var tirs2_3 = 1;
+var tirs3 = 1;
+var tirs3_1 = 1;
+
+var tirtele = 1;
+var tirtele_1 = 1;
+var tirtele2 = 1;
+var tirtele2_1 = 1;
+var tirtele2_2 = 1;
+
+var jet = true;
+var jet2 = true;
+
+var paroi_grande_jet = false;
+
+var paroi_grande;
+var paroi_petite;
 
 var keys;
 
@@ -27,10 +130,17 @@ var gameOverText;
 
 
 var recupPowerUp = false;
+var recupPowerUpVie = false;
 var jetpackText;
  
 var jump = true;
 var jetpack = false;
+var PV = false;
+
+var HP = 6;
+
+var compteur = 150;
+var invincible = false;
 
 class SceneUn extends Phaser.Scene{
     constructor(){
@@ -42,7 +152,16 @@ class SceneUn extends Phaser.Scene{
     preload(){
         //Assets
 
-        this.load.spritesheet('player','assets/blyke.png', { frameWidth: 32, frameHeight: 36 } );
+        this.load.image('narrato_ext1', 'assets/narrato_ext1.png');
+        this.load.image('narrato_ext1_2', 'assets/narrato_ext1_2.png');
+        this.load.image('narrato_ext1_3', 'assets/narrato_ext1_3.png');
+        this.load.image('narrato_ext1_4', 'assets/narrato_ext1_4.png');
+
+        this.load.image('soleil_fond', 'assets/soleil.png');
+        this.load.image('montagne_fond', 'assets/montagne_fond.png');
+        this.load.image('nuage_fond', 'assets/nuage.png');
+
+        this.load.spritesheet('player','assets/blyke.png', { frameWidth: 22, frameHeight: 33 } );
 
         this.load.image('ennemi_zetsu', 'assets/zetsu.png');
         this.load.spritesheet('ennemi_araignee', 'assets/araignee.png', { frameWidth: 52, frameHeight: 18} );
@@ -55,15 +174,46 @@ class SceneUn extends Phaser.Scene{
     }
     create(){
         //Affichage des assets
+        if(restart == false){
+        narrato_ext1_4 = this.add.image(448,224, 'narrato_ext1_4').setDepth(3).setScrollFactor(0).setVisible(false).setInteractive();
+        narrato_ext1_3 = this.add.image(448,224, 'narrato_ext1_3').setDepth(3).setScrollFactor(0).setVisible(false).setInteractive();
+        narrato_ext1_2 = this.add.image(448,224, 'narrato_ext1_2').setDepth(3).setScrollFactor(0).setVisible(false).setInteractive();
+        narrato_ext1 = this.add.image(448,224, 'narrato_ext1').setDepth(3).setScrollFactor(0).setInteractive();
+        
+        narrato_ext1.on('pointerdown', function(){
+            narrato_ext1.destroy();
+            narrato_ext1_2.setVisible(true);
+        });
+
+        narrato_ext1_2.on('pointerdown', function(){
+            narrato_ext1_2.destroy();
+            narrato_ext1_3.setVisible(true);
+        });
+
+        narrato_ext1_3.on('pointerdown', function(){
+            narrato_ext1_3.destroy();
+            narrato_ext1_4.setVisible(true);
+        });
+
+        narrato_ext1_4.on('pointerdown', function(){
+            narrato_ext1_4.destroy();
+        });
+        }
+
+        this.add.image(4000, 480, 'soleil_fond').setScrollFactor(0.7);
+        this.add.image(4000, 480, 'montagne_fond').setScrollFactor(0.9);
+        this.add.image(4000, 0, 'nuage_fond').setScrollFactor(0.6);
 
         const map = this.make.tilemap({key: 'map'});
         const tileset = map.addTilesetImage('tiles_solmur_ext','tiles');
 
-        fond_ext1 = map.createLayer('fond_ext1', tileset, 0, 0);
+        decor_ext1 = map.createLayer('decor_ext1', tileset, 0, 0);
         platforms_ext1 = map.createLayer('sol_ext1', tileset, 0, 0);
         bloque_zetsu_ext1 = map.createLayer('bloque_zetsu_ext1', tileset, 0, 0);
         piege_ext1 = map.createLayer('piege_ext1', tileset, 0, 0);
         changescene_ext1 = map.createLayer('changescene_ext1', tileset, 0, 0);
+
+     
 
         platforms_ext1.setCollisionByExclusion(-1, true);
         piege_ext1.setCollisionByExclusion(-1, true);
@@ -72,7 +222,7 @@ class SceneUn extends Phaser.Scene{
     
     
 
-        player = this.physics.add.sprite(70, 560, 'player');
+        player = this.physics.add.sprite(positionplayerX, positionplayerY, 'player');
 
         player.setBounce(0.2);
         player.setCollideWorldBounds(false);
@@ -186,9 +336,9 @@ class SceneUn extends Phaser.Scene{
 
         //Clavier
         keys = this.input.keyboard.addKeys({
-            left: Phaser.Input.Keyboard.KeyCodes.LEFT,
-            right: Phaser.Input.Keyboard.KeyCodes.RIGHT,
-            space: Phaser.Input.Keyboard.KeyCodes.SPACE,
+            q: Phaser.Input.Keyboard.KeyCodes.Q,
+            d: Phaser.Input.Keyboard.KeyCodes.D,
+            z: Phaser.Input.Keyboard.KeyCodes.Z,
             c: Phaser.Input.Keyboard.KeyCodes.C,
             enter: Phaser.Input.Keyboard.KeyCodes.ENTER,
         })
@@ -210,6 +360,7 @@ class SceneUn extends Phaser.Scene{
 
         //Caméra
         this.cameras.main.startFollow(player);
+        this.cameras.main.fadeIn(300);
         this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
 
         //Affichage de la position du joueur
@@ -235,8 +386,25 @@ class SceneUn extends Phaser.Scene{
             gameOverText = this.add.image(896/2, 448/2, 'gameover').setScrollFactor(0).setDepth(1);
             
             if(keys.enter.isDown){
-                this.scene.restart();
-                gameOver = false;
+                restart = true;
+                if(player.x > 2610 && player.x < 6288 && player.y >= 0){
+                    this.scene.restart();
+                    positionplayerX = 1890;
+                    positionplayerY = 174;
+                    gameOver = false;
+                    narrato_ext1.destroy();
+                    narrato_ext1_2.setVisible(false);
+                    narrato_ext1_3.setVisible(false);
+                    narrato_ext1_4.setVisible(false);
+                }
+                else{
+                    this.scene.restart();
+                    gameOver = false;
+                    narrato_ext1.setVisible(false);
+                    narrato_ext1_2.setVisible(false);
+                    narrato_ext1_3.setVisible(false);
+                    narrato_ext1_4.setVisible(false);
+                }
             }
             return;
 
@@ -244,11 +412,11 @@ class SceneUn extends Phaser.Scene{
 
         //Déplacements basiques : droite, gauche et saut
 
-        if(keys.left.isDown){
+        if(keys.q.isDown){
             player.setVelocityX(-185);
             player.anims.play('left', true);
         }
-        else if(keys.right.isDown){
+        else if(keys.d.isDown){
             player.setVelocityX(185);
             player.anims.play('right', true);
         }
@@ -257,7 +425,7 @@ class SceneUn extends Phaser.Scene{
             player.anims.play('turn', true);
         }
 
-        if(keys.space.isDown && player.body.blocked.down){
+        if(keys.z.isDown && player.body.blocked.down){
             player.setVelocityY(-170);
         }
 
