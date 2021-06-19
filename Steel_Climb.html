@@ -6,6 +6,8 @@
     <script src="//cdn.jsdelivr.net/npm/phaser@3.54.0/dist/phaser.js"></script>
     <script src="SceneUn.js"></script>
     <script src="SceneDeux.js"></script>
+    <script src="SceneTrois.js"></script>
+    <script src="SceneQuatre.js"></script>
     <style type="text/css">
         body {
             margin: 0;
@@ -13,7 +15,7 @@
     </style>
 </head>
 <body>
-
+    
 <script type="text/javascript">
 
 var config = {
@@ -31,7 +33,7 @@ var config = {
             debug: true
         }
     },
-    scene: [SceneUn, SceneDeux]
+    scene: [SceneDeux, SceneQuatre, SceneUn, SceneTrois]
 };
 
 var game = new Phaser.Game(config);
