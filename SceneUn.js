@@ -8,6 +8,8 @@ var narrato_grotte1;
 var narrato_ext2;
 var narrato_ext2_2;
 
+var narrato_grotte2;
+
 var player;
 var power_up;
 var power_up_vie;
@@ -23,8 +25,8 @@ var position2playerY = 560;  // 560
 var position3playerX = 70;  //70
 var position3playerY = 680;  //680
 
-var position4playerX = 1151;  //20
-var position4playerY = 200;  //430
+var position4playerX = 20;  //20
+var position4playerY = 430;  //430
 
 var background;
 var decor_ext1;
@@ -45,7 +47,6 @@ var changescene_ext2;
 var bloque_zetsu_ext2;
 
 var sol_grotte2;
-var platforms_grotte2;
 var piege_grotte2;
 
 var positionXtext;
@@ -55,8 +56,6 @@ var ennemi_zetsu;
 var ennemi_araignee;
 var ennemi_chenille;
 var ennemi_fusee;
-
-var boss;
 
 var projectile;
 var projectile2;
@@ -92,7 +91,6 @@ var projectele2;
 var projectele2_1;
 var projectele2_2;
 
-var sharingan;
 var boules_blyke;
 
 var tirs = 1;
@@ -117,11 +115,6 @@ var tirtele2_2 = 1;
 
 var jet = true;
 var jet2 = true;
-
-var paroi_grande_jet = false;
-
-var paroi_grande;
-var paroi_petite;
 
 var keys;
 
