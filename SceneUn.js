@@ -1,3 +1,4 @@
+var ecran_titre;
 var narrato_ext1;
 var narrato_ext1_2;
 var narrato_ext1_3;
@@ -16,8 +17,8 @@ var power_up_vie;
 
 var restart = false;
 
-var positionplayerX = 6000;
-var positionplayerY = 70;
+var positionplayerX = 70;
+var positionplayerY = 620;
 
 var position2playerX = 70;  //70
 var position2playerY = 560;  // 560
@@ -145,6 +146,7 @@ class SceneUn extends Phaser.Scene{
     preload(){
         //Assets
 
+        this.load.image('ecran_titre', 'assets/Ecran_titre.png');
         this.load.image('narrato_ext1', 'assets/narrato_ext1.png');
         this.load.image('narrato_ext1_2', 'assets/narrato_ext1_2.png');
         this.load.image('narrato_ext1_3', 'assets/narrato_ext1_3.png');
@@ -171,8 +173,14 @@ class SceneUn extends Phaser.Scene{
         narrato_ext1_4 = this.add.image(448,224, 'narrato_ext1_4').setDepth(3).setScrollFactor(0).setVisible(false).setInteractive();
         narrato_ext1_3 = this.add.image(448,224, 'narrato_ext1_3').setDepth(3).setScrollFactor(0).setVisible(false).setInteractive();
         narrato_ext1_2 = this.add.image(448,224, 'narrato_ext1_2').setDepth(3).setScrollFactor(0).setVisible(false).setInteractive();
-        narrato_ext1 = this.add.image(448,224, 'narrato_ext1').setDepth(3).setScrollFactor(0).setInteractive();
+        narrato_ext1 = this.add.image(448,224, 'narrato_ext1').setDepth(3).setScrollFactor(0).setVisible(false).setInteractive();
+        ecran_titre = this.add.image(448,224, 'ecran_titre').setDepth(3).setScrollFactor(0).setInteractive();
         
+        ecran_titre.on('pointerdown', function(){
+            ecran_titre.destroy();
+            narrato_ext1.setVisible(true);
+        });
+
         narrato_ext1.on('pointerdown', function(){
             narrato_ext1.destroy();
             narrato_ext1_2.setVisible(true);
@@ -353,7 +361,7 @@ class SceneUn extends Phaser.Scene{
 
         //Caméra
         this.cameras.main.startFollow(player);
-        this.cameras.main.fadeIn(300);
+        this.cameras.main.fadeIn(500);
         this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
 
         //Affichage de la position du joueur
