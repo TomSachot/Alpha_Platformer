@@ -840,7 +840,7 @@ class SceneDeux extends Phaser.Scene{
         for (const canongauche of this.canongauches.children.entries) {
             
             
-            if(player.x >= 2400 && player.x <= 3472 && player.y >= 562 && player.y <= 878 && tir == 1){
+            if(/*player.x >= 2400 && player.x <= 3472 && player.y >= 562 && player.y <= 878 &&*/ tir == 1){
                 tir = 0;
                 projectile = this.physics.add.sprite(canongauche.x, canongauche.y, 'projectile');
                 projectile.setVelocityX(320);
@@ -849,7 +849,7 @@ class SceneDeux extends Phaser.Scene{
                 this.physics.add.collider(projectile, platforms_grotte1, disparitionprojectile, null, this);
                 this.physics.add.collider(player, projectile, projectilemort, null, this);
             }
-            if(player.x >= 3728 && player.x <= 4020 && player.y >= 700 && player.y <= 910 && tir == 1){
+            if(/*player.x >= 3728 && player.x <= 4020 && player.y >= 700 && player.y <= 910 &&*/ tir == 1){
                 tir = 0;
                 projectile = this.physics.add.sprite(canongauche.x, canongauche.y, 'projectile');
                 projectile.setVelocityX(320);
