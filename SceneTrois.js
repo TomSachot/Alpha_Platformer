@@ -17,7 +17,8 @@ class SceneTrois extends Phaser.Scene{
         this.load.image('montagne_fond', 'assets/montagne_fond.png');
         this.load.image('nuage_fond', 'assets/nuage.png');
 
-        this.load.spritesheet('player','assets/blyke.png', { frameWidth: 32, frameHeight: 36 } );
+        this.load.spritesheet('player','assets/blyke.png', { frameWidth: 22, frameHeight: 33 } );
+        this.load.spritesheet('player_2','assets/blyke_jetpack.png', { frameWidth: 29, frameHeight: 47 } );
         this.load.image('power_up','assets/power_up.png');
 
         this.load.image('ennemi_zetsu', 'assets/zetsu.png');
@@ -90,6 +91,13 @@ class SceneTrois extends Phaser.Scene{
         });
 
         this.anims.create({
+            key: 'turn_jetpack',
+            frames: this.anims.generateFrameNumbers('player_2', { start: 2, end: 3}),
+            frameRate: 20,
+            repeat: -1
+        });
+
+        this.anims.create({
             key: 'left',
             frames: this.anims.generateFrameNumbers('player', { start: 0, end: 3 }),
             frameRate: 10,
@@ -97,8 +105,22 @@ class SceneTrois extends Phaser.Scene{
         });
 
         this.anims.create({
+            key: 'left_jetpack',
+            frames: this.anims.generateFrameNumbers('player_2', { start: 0, end: 1 }),
+            frameRate: 10,
+            repeat: -1
+        });
+
+        this.anims.create({
             key: 'right',
             frames: this.anims.generateFrameNumbers('player', { start: 5, end: 8 }),
+            frameRate: 10,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: 'right_jetpack',
+            frames: this.anims.generateFrameNumbers('player_2', { start: 4, end: 5 }),
             frameRate: 10,
             repeat: -1
         });
@@ -1009,6 +1031,7 @@ class SceneTrois extends Phaser.Scene{
                     tirtele2 = 1;
                     tirtele2_1 = 1;
                     tirtele2_2 = 1;
+                    jet2 = true;
                     gameOver = false;
                 }
                 if(player.x > 2530 && player.x < 4767 && player.y >= 0){
@@ -1034,6 +1057,7 @@ class SceneTrois extends Phaser.Scene{
                     tirtele2 = 1;
                     tirtele2_1 = 1;
                     tirtele2_2 = 1;
+                    jet2 = true;
                     gameOver = false;
                 }
                 if(player.x > 4767 && player.x < 6105 && player.y >= 0){
@@ -1059,6 +1083,7 @@ class SceneTrois extends Phaser.Scene{
                     tirtele2 = 1;
                     tirtele2_1 = 1;
                     tirtele2_2 = 1;
+                    jet2 = true;
                     gameOver = false;
                 }
                 if(player.x > 6105 && player.x < 7910 && player.y >= 0){
@@ -1084,6 +1109,7 @@ class SceneTrois extends Phaser.Scene{
                     tirtele2 = 1;
                     tirtele2_1 = 1;
                     tirtele2_2 = 1;
+                    jet2 = true;
                     gameOver = false;
                 }
                 else{
@@ -1107,6 +1133,7 @@ class SceneTrois extends Phaser.Scene{
                 tirtele2 = 1;
                 tirtele2_1 = 1;
                 tirtele2_2 = 1;
+                jet2 = true;
                 gameOver = false;
                 }
             }
@@ -1133,7 +1160,16 @@ class SceneTrois extends Phaser.Scene{
         }
 
         if(jetpack == true){
+            if(keys.space.isDown && keys.q.isDown){
+                player.anims.play('q_jetpack', true);
+                player.setVelocityY(-110);
+            }
+            if(keys.space.isDown && keys.d.isDown){
+                player.anims.play('right_jetpack', true);
+                player.setVelocityY(-110);
+            }
             if(keys.space.isDown){
+                player.anims.play('turn_jetpack', true);
                 player.setVelocityY(-110);
             }
         }
