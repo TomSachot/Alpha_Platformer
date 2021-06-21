@@ -11,11 +11,16 @@ var narrato_ext2_2;
 
 var narrato_grotte2;
 
+var narrato_ext3;
+var narrato_ext3_2;
+var narrato_ext3_3;
+
 var player;
 var power_up;
 var power_up_vie;
 
 var restart = false;
+var stele_inscriptions = false;
 
 var positionplayerX = 70;
 var positionplayerY = 620;
@@ -28,6 +33,9 @@ var position3playerY = 680;  //680
 
 var position4playerX = 20;  //20
 var position4playerY = 430;  //430
+
+var position5playerX = 40;
+var position5playerY = 399;
 
 var background;
 var decor_ext1;
@@ -49,6 +57,12 @@ var bloque_zetsu_ext2;
 
 var sol_grotte2;
 var piege_grotte2;
+var changescene_grotte2;
+
+var decor_ext3;
+var platforms_ext3;
+var piege_ext3;
+var changescene_ext3;
 
 var positionXtext;
 var positionYtext;
@@ -57,6 +71,8 @@ var ennemi_zetsu;
 var ennemi_araignee;
 var ennemi_chenille;
 var ennemi_fusee;
+
+var stele;
 
 var projectile;
 var projectile2;
@@ -129,12 +145,6 @@ var jetpackText;
  
 var jump = true;
 var jetpack = false;
-var PV = false;
-
-var HP = 6;
-
-var compteur = 150;
-var invincible = false;
 
 class SceneUn extends Phaser.Scene{
     constructor(){
