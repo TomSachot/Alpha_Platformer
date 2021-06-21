@@ -49,8 +49,10 @@ class SceneQuatre extends Phaser.Scene{
 
         sol_grotte2 = map_4.createLayer('sol_grotte2', tileset, 0, 0);
         piege_grotte2 = map_4.createLayer('piege_grotte2', tileset, 0, 0);
+        changescene_grotte2 = map_4.createLayer('changescene_grotte2', tileset, 0, 0);
 
         sol_grotte2.setCollisionByExclusion(-1, true);
+        changescene_grotte2.setCollisionByExclusion(-1, true);
         piege_grotte2.setCollisionByExclusion(-1, true);
 
         player = this.physics.add.sprite(position4playerX, position4playerY, 'player');
@@ -176,6 +178,7 @@ class SceneQuatre extends Phaser.Scene{
         this.physics.add.collider(player, piege_grotte2, piegemort, null, this);
         this.physics.add.collider(power_up, sol_grotte2);
         this.physics.add.collider(player, power_up, collectPowerUp, null, this);
+        this.physics.add.collider(player, changescene_grotte2, changementscene4, null, this);
         this.physics.add.collider(power_up_vie, sol_grotte2);
         this.physics.add.collider(player, power_up_vie, collectPowerUpVie, null, this);
 
@@ -192,13 +195,17 @@ class SceneQuatre extends Phaser.Scene{
         //Affichage de la position du joueur
         positionXtext.setText('Position X :' + player.x);
         positionYtext.setText('Position Y :' + player.y);
+
+        if(player.x >= 3955 && player.y < 343){
+            changementscene4;
+        }
     
         //Game Over
         if (gameOver){
             gameOverText = this.add.image(896/2, 448/2, 'gameover').setScrollFactor(0).setDepth(1);
             if(keys.enter.isDown){
+                restart = true;
                 if(player.x > 1450 && player.y > 375){
-                    restart = true;
                     this.scene.restart();
                     position3playerX = 1829;
                     position3playerY = 271;
@@ -207,7 +214,6 @@ class SceneQuatre extends Phaser.Scene{
                     gameOver = false;
                 }
                 else{
-                restart = true;
                 this.scene.restart();
                 jetpack = true;
                 jet2 = true;
@@ -316,6 +322,13 @@ class SceneQuatre extends Phaser.Scene{
         power_up_vie.disableBody(true, true);
         recupPowerUpVie = true;
         PV = true;
+    }
+
+    //Changement de scène
+    function changementscene4(player, changescene_grotte2){
+        if(player.x >= 3955 && player.y > 343){
+            this.scene.start("sceneCinq");
+        }
     }
 
     //Piège
