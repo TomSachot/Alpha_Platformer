@@ -1,6 +1,6 @@
 {
     "name": "SteelClimb",
-    "version": "bétâ",
+    "version": "1.0.0",
     "main": "index.js",
     "script":{
         "start": "electron ."
